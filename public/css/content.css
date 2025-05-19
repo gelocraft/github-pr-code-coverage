@@ -1,0 +1,12 @@
+.line-of-code {
+	border-width: 4px;
+	border-style: solid;
+}
+
+.line-of-code.covered {
+	border-color: #2ecc71 !important;
+}
+
+.line-of-code.uncovered {
+	border-color: #f55353 !important;
+}
