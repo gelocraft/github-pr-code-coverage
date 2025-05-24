@@ -1,4 +1,5 @@
 import JSZip from 'jszip'
+import Cache from '../pullrequest/cache'
 import { ICoverageJson, JestCoverageJsonFile } from '../types'
 
 export class JestCoverageJson implements ICoverageJson {
@@ -9,6 +10,11 @@ export class JestCoverageJson implements ICoverageJson {
 	}
 
 	async parse() {
+		const url = new URL(window.location.href)
+		const cache = await Cache.get(url.pathname)
+
+		if (cache?.coverage_json) return cache.coverage_json
+
 		const buffer = new Uint8Array(this.coverage_artifact).buffer
 		const zip = await JSZip.loadAsync(buffer)
 
