@@ -1,5 +1,5 @@
 import { Endpoints } from '@octokit/types'
-import { ICoverageJson } from '../types'
+import { ICoverageArtifact } from '../types'
 
 type GetBranchRefParams =
 	Endpoints['GET /repos/{owner}/{repo}/pulls/{pull_number}']['parameters']
@@ -147,7 +147,7 @@ export interface IPullRequestCache {
 				test_framework: Awaited<
 					ReturnType<IPullRequestHandlers['getTestFramework']>
 				>
-				coverage_json: Awaited<ReturnType<ICoverageJson['parse']>>
+				coverage_json: Awaited<ReturnType<ICoverageArtifact['toJson']>>
 		  }
 		| undefined
 	>
