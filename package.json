@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^21.1.1",
+    "@octokit/types": "^14.0.0",
     "jszip": "^3.10.1"
   }
 }
