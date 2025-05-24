@@ -1,17 +1,9 @@
 const form = document.querySelector('form')
-form?.addEventListener('submit', event => {
+form?.addEventListener('submit', async event => {
 	event.preventDefault()
 
 	const input: HTMLInputElement =
 		document.querySelector('form > input') || document.createElement('input')
 
-	chrome.storage.local
-		.set({ gh_token: input.value })
-		.then(() => console.log('save successful'))
-		.catch(e => console.log('e', e))
+	await chrome.storage.local.set({ gh_token: input.value })
 })
-//
-// chrome.storage.local
-// 	.get('gh_token')
-// 	.then(result => console.log(result))
-// 	.catch(e => console.log(e))
