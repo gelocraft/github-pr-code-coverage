@@ -1,9 +1,10 @@
 import Cache from './cache'
+import Coverage from '../coverage'
 import { Octokit } from '@octokit/rest'
-import { ICoverageJson } from '../types'
 import { getAuthToken } from './credential'
 import { IPullRequestHandlers } from './types'
-import { JestCoverageJson } from '../frameworks/jest'
+import { JestCoverageArtifact } from '../frameworks/jest'
+import { PytestCoverageArtifact } from '../frameworks/pytest'
 
 const url = new URL(window.location.href)
 
@@ -149,22 +150,23 @@ const Handlers: IPullRequestHandlers = {
 		const test_framework = await framework
 		const coverage_artifact = await artifact
 
-		if (!test_framework || !coverage_artifact) return
-
-		const jestHighlightCode = async (coverage_json: ICoverageJson) => {
-			const json = await coverage_json.parse()
-			console.log(json)
-		}
-		const pyTestHighlightCode = () => console.log('Pytest highlight')
+		if (!test_framework) return
+		if (!coverage_artifact) return
 
 		switch (test_framework) {
 			case 'Jest':
 			case 'Test Package':
-				await jestHighlightCode(new JestCoverageJson(coverage_artifact))
+				await Coverage.highlight(new JestCoverageArtifact(coverage_artifact))
 				break
 
 			case 'Pytest':
-				pyTestHighlightCode()
+				await Coverage.highlight(new PytestCoverageArtifact(coverage_artifact))
+				break
+
+			case 'Rust Test':
+				break
+
+			case 'Go Test':
 				break
 		}
 	}
