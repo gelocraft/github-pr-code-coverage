@@ -1,3 +1,4 @@
+import App from '../app'
 import PullRequest from '../pullrequest'
 import Handlers from '../pullrequest/handlers'
 ;(async () => {
@@ -8,4 +9,6 @@ import Handlers from '../pullrequest/handlers'
 		.getCoverageArtifact(Handlers.getCoverageArtifact)
 		.getTestFramework(Handlers.getTestFramework)
 		.highlightCodeCoverage(Handlers.highlightCodeCoverage)
+
+	await App.renderUI()
 })()
