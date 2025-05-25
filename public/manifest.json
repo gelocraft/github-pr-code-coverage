@@ -25,7 +25,11 @@
 		{
 			"js": ["scripts/content.js"],
 			"css": ["css/content.css"],
-			"matches": ["https://github.com/*/*/pull/*/files*"]
+			"matches": [
+				"https://github.com/*/*/pull/*/files",
+				"https://github.com/*/*/pull/*/files*"
+			],
+			"run_at": "document_idle"
 		}
 	],
 	"permissions": ["storage", "tabs", "scripting", "activeTab"],
