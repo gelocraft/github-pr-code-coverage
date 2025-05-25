@@ -1,6 +1,6 @@
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
 	if (changeInfo.url && changeInfo.url.endsWith('/files')) {
-		chrome.scripting
+		await chrome.scripting
 			.executeScript({
 				target: { tabId },
 				files: ['scripts/content.js']
