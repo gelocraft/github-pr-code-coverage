@@ -23,9 +23,9 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://github.com/*/*/pull/*/files"],
 			"js": ["scripts/content.js"],
-			"css": ["css/content.css"]
+			"css": ["css/content.css"],
+			"matches": ["https://github.com/*/*/pull/*/files*"]
 		}
 	],
 	"permissions": ["storage", "tabs", "scripting", "activeTab"],
