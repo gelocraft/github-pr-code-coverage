@@ -33,3 +33,15 @@ export type PytestCoverageJsonFile = {
 		}
 	}
 }
+
+export type GoTestCoverageJsonFile = Array<{
+	file: string
+	statements: Array<{
+		lines: Array<number>
+		reached: number
+	}>
+}>
+//
+// export type RustTestCoverageJsonFile = {
+// 	files: []
+// }
