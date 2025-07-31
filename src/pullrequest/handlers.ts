@@ -6,6 +6,7 @@ import { IPullRequestHandlers } from './types'
 import { JestCoverageArtifact } from '../frameworks/jest'
 import { PytestCoverageArtifact } from '../frameworks/pytest'
 import { GoTestCoverageArtifact } from '../frameworks/gotest'
+import { RustTestCoverageArtifact } from '../frameworks/rustest'
 
 const url = new URL(window.location.href)
 
@@ -166,7 +167,10 @@ const Handlers: IPullRequestHandlers = {
 				await Coverage.highlight(new PytestCoverageArtifact(coverage_artifact))
 				break
 
-			case 'Rust Test':
+			case 'RustTest':
+				await Coverage.highlight(
+					new RustTestCoverageArtifact(coverage_artifact)
+				)
 				break
 
 			case 'GoTest':

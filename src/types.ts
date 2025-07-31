@@ -41,7 +41,12 @@ export type GoTestCoverageJsonFile = Array<{
 		reached: number
 	}>
 }>
-//
-// export type RustTestCoverageJsonFile = {
-// 	files: []
-// }
+
+export type RustTestCoverageJsonFile = {
+	data: Array<{
+		files: Array<{
+			filename: string
+			segments: Array<[number, number, number, boolean, boolean, boolean]>
+		}>
+	}>
+}
