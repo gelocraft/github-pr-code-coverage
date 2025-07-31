@@ -5,6 +5,7 @@ import { getAuthToken } from './credential'
 import { IPullRequestHandlers } from './types'
 import { JestCoverageArtifact } from '../frameworks/jest'
 import { PytestCoverageArtifact } from '../frameworks/pytest'
+import { GoTestCoverageArtifact } from '../frameworks/gotest'
 
 const url = new URL(window.location.href)
 
@@ -64,7 +65,9 @@ const Handlers: IPullRequestHandlers = {
 					run =>
 						run.name == 'Test Package' ||
 						run.name == 'Jest' ||
-						run.name == 'Pytest'
+						run.name == 'Pytest' ||
+						run.name == 'GoTest' ||
+						run.name == 'RustTest'
 				)
 				.at(0) ?? undefined
 
@@ -166,7 +169,8 @@ const Handlers: IPullRequestHandlers = {
 			case 'Rust Test':
 				break
 
-			case 'Go Test':
+			case 'GoTest':
+				await Coverage.highlight(new GoTestCoverageArtifact(coverage_artifact))
 				break
 		}
 	}
